@@ -1,17 +1,6 @@
 import _ from "lodash";
 
-let initialState = [
-  {
-    firstName: "yogendra",
-    lastName: "saxena",
-    email: "yogendrasaxena56@gmail.com"
-  },
-  {
-    firstName: "sunder",
-    lastName: "raghvan",
-    email: "sunderrag2@gmail.com"
-  }
-];
+let initialState = [];
 
 export default function(state = initialState, action) {
   switch (action.type) {
@@ -31,6 +20,10 @@ export default function(state = initialState, action) {
     case "MODIFY_DATA": {
       let newState = _.cloneDeep(state);
       newState.splice(action.payload.index, 1, action.payload.data);
+      return newState;
+    }
+    case "GET_ALL": {
+      let newState = action.payload;
       return newState;
     }
     default: {

@@ -7,8 +7,8 @@ class Table extends React.Component {
     super(props);
   }
 
-  delete(index) {
-    this.props.deleteData(index);
+  delete(index, id) {
+    this.props.deleteData(index, id);
   }
 
   modifyData(index) {
@@ -16,6 +16,9 @@ class Table extends React.Component {
   }
 
   getTableRowData(data) {
+    if (data.length === 0) {
+      return <h3>Loading</h3>;
+    }
     return data.map((item, index) => (
       <tr key={index}>
         <td>{item.firstName}</td>
@@ -26,7 +29,7 @@ class Table extends React.Component {
             type="button"
             className="btn btn-primary"
             style={{ marginRight: "15px" }}
-            onClick={event => this.delete(index)}
+            onClick={event => this.delete(index, item.id)}
           >
             Delete
           </button>

@@ -7,14 +7,16 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
 import Table from "./Component/Table";
-import { deleteAll } from "./Redux/Actions/user";
+import { deleteAll, getAll } from "./Redux/Actions/user";
 
 class App extends React.Component {
   constructor(props) {
     super(props);
   }
 
-  componentDidMount(prevProps, prevState) {}
+  componentDidMount(prevProps, prevState) {
+    this.props.getAll();
+  }
 
   deleteAll() {
     this.props.deleteAll();
@@ -51,4 +53,4 @@ function mapStateToProps({ userReducers }) {
   };
 }
 
-export default connect(mapStateToProps, { deleteAll })(App);
+export default connect(mapStateToProps, { deleteAll, getAll })(App);
