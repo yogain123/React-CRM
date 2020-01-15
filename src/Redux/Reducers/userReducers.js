@@ -7,9 +7,9 @@ let initialState = [
     email: "yogendrasaxena56@gmail.com"
   },
   {
-    firstName: "khushi",
-    lastName: "srivastava",
-    email: "KS@gmail.com"
+    firstName: "sunder",
+    lastName: "raghvan",
+    email: "sunderrag2@gmail.com"
   }
 ];
 
