@@ -16,32 +16,35 @@ class Table extends React.Component {
   }
 
   getTableRowData(data) {
-    return data.map((item, index) => (
-      <tr key={index}>
-        <td>{item.firstName}</td>
-        <td>{item.lastName}</td>
-        <td>{item.email}</td>
-        <td>
-          <button
-            type="button"
-            className="btn btn-primary"
-            style={{ marginRight: "15px" }}
-            onClick={event => this.delete(index)}
-          >
-            Delete
-          </button>
-        </td>
-        <td>
-          <button
-            type="button"
-            className="btn btn-primary"
-            onClick={event => this.modifyData(index)}
-          >
-            Edit
-          </button>
-        </td>
-      </tr>
-    ));
+    return data.map(
+      (item, index) =>
+        item.show && (
+          <tr key={index}>
+            <td>{item.firstName}</td>
+            <td>{item.lastName}</td>
+            <td>{item.email}</td>
+            <td>
+              <button
+                type="button"
+                className="btn btn-primary"
+                style={{ marginRight: "15px" }}
+                onClick={event => this.delete(index)}
+              >
+                Delete
+              </button>
+            </td>
+            <td>
+              <button
+                type="button"
+                className="btn btn-primary"
+                onClick={event => this.modifyData(index)}
+              >
+                Edit
+              </button>
+            </td>
+          </tr>
+        )
+    );
   }
 
   render() {

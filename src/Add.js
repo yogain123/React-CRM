@@ -25,7 +25,6 @@ class Add extends Component {
       lastName: elements[1].value,
       email: elements[2].value
     };
-    console.log(data);
     if (this.index != undefined) {
       this.props.modifyData(data, this.index);
     } else {

@@ -7,17 +7,27 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
 import Table from "./Component/Table";
-import { deleteAll } from "./Redux/Actions/user";
+import { deleteAll, filterData } from "./Redux/Actions/user";
 
 class App extends React.Component {
   constructor(props) {
     super(props);
+    this.state = { email: "" };
+    this.searchBarRef = React.createRef();
   }
 
-  componentDidMount(prevProps, prevState) {}
+  componentDidMount() {
+    this.searchBarRef.current.focus();
+  }
 
   deleteAll() {
     this.props.deleteAll();
+  }
+
+  handleChangeEvent(event) {
+    console.log(event.target.value);
+    this.setState({ email: event.target.value });
+    this.props.filterData(event.target.value);
   }
 
   render() {
@@ -39,7 +49,19 @@ class App extends React.Component {
             Delete All
           </button>
         </div>
-        <Table {...this.props} data={this.props.data} />
+        <div className="form-group container">
+          <label htmlFor="usr">Search By Email</label>
+          <input
+            ref={this.searchBarRef}
+            type="text"
+            className="form-control"
+            value={this.state.email}
+            placeholder="Email"
+            onChange={event => this.handleChangeEvent(event)}
+          />
+        </div>
+
+        {<Table {...this.props} />}
       </div>
     );
   }
@@ -51,4 +73,4 @@ function mapStateToProps({ userReducers }) {
   };
 }
 
-export default connect(mapStateToProps, { deleteAll })(App);
+export default connect(mapStateToProps, { deleteAll, filterData })(App);

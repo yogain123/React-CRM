@@ -24,3 +24,10 @@ export function deleteAll() {
     type: "DELETE_ALL"
   };
 }
+
+export function filterData(value) {
+  return {
+    type: "FILTER_DATA",
+    payload: value
+  };
+}
